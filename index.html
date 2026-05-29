@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chidera Iloh - Resume</title>
     <link rel="stylesheet" href="index.css">
-
+    <style>
+        #view-count {
+            font-weight: bold;
+            color: #0066cc;
+        }
+    </style>
 </head>
 <body>
-
     <h1>Chidera Iloh</h1>
     <p class="contact">Lagos, Nigeria | <a href="tel:+2349068730979">+2349068730979</a> | <a href="mailto:ilohchidera2018@email.com">ilohchidera2018@email.com</a> | <a href="https://linkedin.com/in/chiderailoh" target="_blank">linkedin.com/in/chiderailoh</a> | GitHub: <a href="https://github.com/chideraa25" target="_blank">chideraa25</a></p>
-
     <p><strong>Aspiring Cloud Security Engineer</strong> | Passionate about securing cloud infrastructure and solving security challenges.</p>
 
     <div class="section">
@@ -35,14 +38,14 @@
     <div class="section">
         <h2>Projects</h2>
         <ul>
+            <li><strong>Cloud Resume Challenge (This Website)</strong><br>
+                Deployed a serverless personal resume website on AWS using S3, CloudFront, Lambda, API Gateway, and DynamoDB. Includes live visitor counter.</li>
+           
             <li><strong>Secure Multi-Tier Web Application on AWS</strong><br>
-                Designed and deployed a 3-tier web app with proper security controls (VPC, Security Groups, IAM roles, SSL, WAF). Documented architecture on GitHub.</li>
-            
+                Designed and deployed a 3-tier web app with proper security controls (VPC, Security Groups, IAM roles, SSL, WAF).</li>
+           
             <li><strong>Cloud Security Monitoring Dashboard</strong><br>
                 Built a monitoring solution using AWS CloudWatch and Security Hub to detect suspicious activities.</li>
-            
-            <li><strong>Personal Portfolio Website</strong><br>
-                Developed and deployed this responsive resume website using HTML & CSS.</li>
         </ul>
     </div>
 
@@ -50,12 +53,26 @@
         <h2>Education</h2>
         <p><strong>B.Sc. Mathematics</strong> University Of Lagos, Nigeria<br>
         Expected Graduation: 2024</p>
-        <p>·  Relevant Coursework: Probability & Statistics, Linear Algebra, Discrete Mathematics, Numerical Analysis 
-
-·  Applied quantitative skills to risk modeling and data-driven decision making highly transferable to fintech security analytics and fraud prevention.
-
-</p>
+        <p>· Relevant Coursework: Probability & Statistics, Linear Algebra, Discrete Mathematics, Numerical Analysis</p>
     </div>
 
+    <hr>
+    <p><strong>Total Visitors:</strong> <span id="view-count">0</span></p>
+
+    <script>
+        async function getViewCount() {
+            try {
+                const response = await fetch('https://rjytlherk5.execute-api.af-south-1.amazonaws.com/prod/view');
+                const data = await response.json();
+                document.getElementById('view-count').textContent = data.views;
+            } catch (error) {
+                console.error('Error fetching views:', error);
+                document.getElementById('view-count').textContent = 'N/A';
+            }
+        }
+
+        // Load visitor count when page opens
+        window.onload = getViewCount;
+    </script>
 </body>
 </html>
